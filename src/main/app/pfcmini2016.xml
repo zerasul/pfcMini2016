@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <flow name="pfcmini2016Flow1" doc:name="pfcmini2016Flow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="es.ual.itsi2016.pfcmini.soap.PfcMiniSoapService" doc:name="SOAP"/>
+        <component class="es.ual.itsi2016.pfcmini.soap.PfcMiniSoapServiceImpl" doc:name="Java"/>
+        <logger level="INFO" doc:name="Logger"/>
+        <vm:outbound-endpoint exchange-pattern="request-response" address="vm://orchestation" doc:name="VM"/>
+    </flow>
+    <flow name="Orchestation" doc:name="Orchestation">
+        <vm:inbound-endpoint exchange-pattern="request-response" address="vm://orchestation" doc:name="VM"/>
+        <choice doc:name="Choice">
+            <when expression="#[payload.backend==1]">
+                <vm:outbound-endpoint exchange-pattern="request-response" address="vm://clientsorchestation" doc:name="VM"/>
+            </when>
+            <when expression="#[payload.backend==2]">
+                <vm:outbound-endpoint exchange-pattern="request-response" address="vm://productsorchestation" doc:name="VM"/>
+            </when>
+            <when expression="#[payload.backend==3]">
+                <vm:outbound-endpoint exchange-pattern="request-response" address="vm://salesorchestation" doc:name="VM"/>
+            </when>
+        </choice>
+    </flow>
+</mule>

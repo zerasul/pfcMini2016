@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="clients">
+    <flow SubFlow="false" name="clientsFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cb776e48-91e4-4e71-b867-e1594bf382a6">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="2e191b6b-b7a1-476c-831d-fa58fe96a306">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="VM" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="a590d6f4-129c-4ca9-8fea-8c0e28c88794">
+                <graphicalData x="21" y="109" width="68" height="169"/>
+                <properties>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="businessEventsLabel" value=""/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="tracking:enable-default-events" value="false"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="updated"/>
+                    <property name="address" value="vm://clientsorchestation"/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="encoding" value=""/>
+                    <property name="path" value=""/>
+                    <property name="responseTransformer-refs" value=""/>
+                    <property name="responseTimeout" value=""/>
+                    <property name="mimeType" value=""/>
+                    <property name="auxiliary;erased;responseTimeout" value="true"/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <splitter index="0" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="46687962-e097-4661-879b-30ae59353b64">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="updated"/>
+                    <property name=";INDEX" value="0"/>
+                    <property name="tracking:enable-default-events" value="false"/>
+                    <property-collection name="d4ef7336-312c-4db6-bfad-bb24133d8e71">
+                        <property name="choice.expression" value="#[payload.operation==3]"/>
+                    </property-collection>
+                    <property-collection name="6642970f-c754-41e2-9dd0-a395e3a30e5c">
+                        <property name="choice.expression" value="#[payload.operation==2]"/>
+                    </property-collection>
+                    <property-collection name="81ae5169-1a0b-40fe-9333-29c438586de1">
+                        <property name="choice.expression" value="#[payload.operation==1]"/>
+                    </property-collection>
+                </properties>
+                <description></description>
+                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="393620c1-949f-4a13-89b8-09102cc533b5">
+                    <properties>
+                        <property name="updated"/>
+                        <property name=";INDEX" value="0"/>
+                        <property name="tracking:enable-default-events" value="false"/>
+                        <property-collection name="d4ef7336-312c-4db6-bfad-bb24133d8e71">
+                            <property name="choice.expression" value="#[payload.operation==3]"/>
+                        </property-collection>
+                        <property-collection name="6642970f-c754-41e2-9dd0-a395e3a30e5c">
+                            <property name="choice.expression" value="#[payload.operation==2]"/>
+                        </property-collection>
+                        <property-collection name="81ae5169-1a0b-40fe-9333-29c438586de1">
+                            <property name="choice.expression" value="#[payload.operation==1]"/>
+                        </property-collection>
+                    </properties>
+                </pattern>
+                <compartment entity-id="7568e2f7-38d4-4974-ae99-dd412f1e0931">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="81ae5169-1a0b-40fe-9333-29c438586de1">
+                        <pattern name="listClients" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="3cac71b7-1b25-4f40-a84c-462818b20164">
+                            <graphicalData x="297" y="43" width="68" height="67"/>
+                            <properties>
+<property name="updated"/>
+<property name="class" value="es.ual.itsi2016.pfcmini.clients.ListClients"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;450536930">
+    <property name="ref" value=""/>
+    <property name="isProcessed$$$$ " value="true"/>
+</property-collection>
+                            </properties>
+                            <description></description>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="16f32812-a4af-4f71-bb3b-3d14795cdf89"/>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="6642970f-c754-41e2-9dd0-a395e3a30e5c">
+                        <pattern name="CreateClients" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="aaadf463-dafa-48c9-bb23-bed0932514c1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="updated"/>
+<property name="class" value="es.ual.itsi2016.pfcmini.clients.CreateClients"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;1806528813">
+    <property name="ref" value=""/>
+    <property name="isProcessed$$$$ " value="true"/>
+</property-collection>
+                            </properties>
+                            <description></description>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="d4ef7336-312c-4db6-bfad-bb24133d8e71">
+                        <pattern name="deleteClients" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="2d36eee6-1102-43da-9fd5-773aa8de3a91">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="updated"/>
+<property name="class" value="es.ual.itsi2016.pfcmini.clients.DeleteClients"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;747382785">
+    <property name="ref" value=""/>
+    <property name="isProcessed$$$$ " value="true"/>
+</property-collection>
+                            </properties>
+                            <description></description>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </splitter>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>
