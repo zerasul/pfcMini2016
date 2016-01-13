@@ -26,6 +26,11 @@ public class Response {
 	public void setResponse(String response) {
 		this.response = response;
 	}
+	@Override
+	public String toString() {
+		return "Response [request=" + request + ", Result=" + Result
+				+ ", response=" + response + "]";
+	}
 	
 	
 }

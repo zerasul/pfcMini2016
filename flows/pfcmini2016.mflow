@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="pfcmini2016">
-    <flow SubFlow="false" name="pfcmini2016Flow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="508e1127-ee8c-4564-9d53-a36a6e59f161">
+    <flow SubFlow="false" name="pfcmini2016Flow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ee8303c2-2b73-4adc-a029-8ab83909f28c">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -88,15 +88,15 @@
                     <property name="path"/>
                     <property name="encoding"/>
                     <property name="responseTransformer-refs"/>
-                    <property name="mimeType"/>
                     <property name="auxiliary;index" value="6"/>
                     <property name="responseTimeout"/>
+                    <property name="mimeType"/>
                     <property name="connector-ref"/>
                 </properties>
             </endpoint>
         </lane>
     </flow>
-    <flow SubFlow="false" name="Orchestation" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="410e06ba-c395-4376-b4fc-d02bd4eb36e0">
+    <flow SubFlow="false" name="Orchestation" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="2e8c036d-e598-4e86-a3c4-e596f2968c47">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -120,9 +120,9 @@
                     <property name="path"/>
                     <property name="encoding"/>
                     <property name="responseTransformer-refs"/>
-                    <property name="mimeType"/>
                     <property name="auxiliary;index" value="8"/>
                     <property name="responseTimeout"/>
+                    <property name="mimeType"/>
                     <property name="connector-ref"/>
                 </properties>
             </endpoint>
@@ -132,22 +132,22 @@
                     <property name="updated"/>
                     <property name=";INDEX" value="9"/>
                     <property name="tracking:enable-default-events" value="false"/>
-                    <property-collection name="eabc18a1-fbe2-4361-a916-6d23eda9ec0f">
-                        <property name="choice.expression" value="#[payload.backend==2]"/>
+                    <property-collection name="4402083d-cdbe-484f-9ffd-9e6ebe5bd20a">
+                        <property name="choice.expression" value="#[payload.request.backend==3]"/>
                         <property-collection name="choice.attributes">
-                            <property name="expression" value=""/>
+                            <property name="expression" value="#[payload.backend==3]"/>
                         </property-collection>
                     </property-collection>
-                    <property-collection name="baab5b76-48ad-40ef-aff5-ef9f82e2daf2">
-                        <property name="choice.expression" value="#[payload.backend==1]"/>
+                    <property-collection name="d1b5cb72-2b85-480b-89fe-896eeb2d7987">
+                        <property name="choice.expression" value="#[payload.request.backend==2]"/>
                         <property-collection name="choice.attributes">
-                            <property name="expression" value=""/>
+                            <property name="expression" value="#[payload.backend==2]"/>
                         </property-collection>
                     </property-collection>
-                    <property-collection name="6ce5bd6d-de51-411a-81d3-9e7a332ac838">
-                        <property name="choice.expression" value="#[payload.backend==3]"/>
+                    <property-collection name="93f3cb3d-8d9d-4591-88f4-9689a937a430">
+                        <property name="choice.expression" value="#[payload.request.backend==1]"/>
                         <property-collection name="choice.attributes">
-                            <property name="expression" value=""/>
+                            <property name="expression" value="#[payload.backend==1]"/>
                         </property-collection>
                     </property-collection>
                 </properties>
@@ -157,28 +157,28 @@
                         <property name="updated"/>
                         <property name=";INDEX" value="9"/>
                         <property name="tracking:enable-default-events" value="false"/>
-                        <property-collection name="eabc18a1-fbe2-4361-a916-6d23eda9ec0f">
-                            <property name="choice.expression" value="#[payload.backend==2]"/>
+                        <property-collection name="4402083d-cdbe-484f-9ffd-9e6ebe5bd20a">
+                            <property name="choice.expression" value="#[payload.request.backend==3]"/>
                             <property-collection name="choice.attributes">
-<property name="expression" value=""/>
+<property name="expression" value="#[payload.backend==3]"/>
                             </property-collection>
                         </property-collection>
-                        <property-collection name="baab5b76-48ad-40ef-aff5-ef9f82e2daf2">
-                            <property name="choice.expression" value="#[payload.backend==1]"/>
+                        <property-collection name="d1b5cb72-2b85-480b-89fe-896eeb2d7987">
+                            <property name="choice.expression" value="#[payload.request.backend==2]"/>
                             <property-collection name="choice.attributes">
-<property name="expression" value=""/>
+<property name="expression" value="#[payload.backend==2]"/>
                             </property-collection>
                         </property-collection>
-                        <property-collection name="6ce5bd6d-de51-411a-81d3-9e7a332ac838">
-                            <property name="choice.expression" value="#[payload.backend==3]"/>
+                        <property-collection name="93f3cb3d-8d9d-4591-88f4-9689a937a430">
+                            <property name="choice.expression" value="#[payload.request.backend==1]"/>
                             <property-collection name="choice.attributes">
-<property name="expression" value=""/>
+<property name="expression" value="#[payload.backend==1]"/>
                             </property-collection>
                         </property-collection>
                     </properties>
                 </pattern>
                 <compartment entity-id="compartment#1">
-                    <lane hadOnlyOneElement="false" index="11" isChoiceOtherwiseLane="false" entity-id="baab5b76-48ad-40ef-aff5-ef9f82e2daf2">
+                    <lane hadOnlyOneElement="false" index="11" isChoiceOtherwiseLane="false" entity-id="93f3cb3d-8d9d-4591-88f4-9689a937a430">
                         <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="VM" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#3">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
@@ -192,14 +192,15 @@
 <property name="path"/>
 <property name="encoding"/>
 <property name="responseTransformer-refs"/>
-<property name="mimeType"/>
 <property name="auxiliary;index" value="11"/>
 <property name="responseTimeout"/>
+<property name="mimeType"/>
 <property name="connector-ref"/>
                             </properties>
+                            <description></description>
                         </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="13" isChoiceOtherwiseLane="false" entity-id="eabc18a1-fbe2-4361-a916-6d23eda9ec0f">
+                    <lane hadOnlyOneElement="false" index="13" isChoiceOtherwiseLane="false" entity-id="d1b5cb72-2b85-480b-89fe-896eeb2d7987">
                         <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="VM" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#4">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
@@ -213,14 +214,14 @@
 <property name="path"/>
 <property name="encoding"/>
 <property name="responseTransformer-refs"/>
-<property name="mimeType"/>
 <property name="auxiliary;index" value="13"/>
 <property name="responseTimeout"/>
+<property name="mimeType"/>
 <property name="connector-ref"/>
                             </properties>
                         </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="15" isChoiceOtherwiseLane="false" entity-id="6ce5bd6d-de51-411a-81d3-9e7a332ac838">
+                    <lane hadOnlyOneElement="false" index="15" isChoiceOtherwiseLane="false" entity-id="4402083d-cdbe-484f-9ffd-9e6ebe5bd20a">
                         <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="VM" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#5">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
@@ -234,14 +235,38 @@
 <property name="path"/>
 <property name="encoding"/>
 <property name="responseTransformer-refs"/>
-<property name="mimeType"/>
 <property name="auxiliary;index" value="15"/>
 <property name="responseTimeout"/>
+<property name="mimeType"/>
 <property name="connector-ref"/>
                             </properties>
                         </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="3b9a7c0b-184f-4f6a-b9b6-ca46d58b8da7"/>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="b3bb14ec-0e39-4e8a-8b7b-7d338a65c188">
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="VM" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="615c3f13-90ca-4b77-8621-cee5119e9467">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="auxiliary;erased;mimeType" value="true"/>
+<property name="businessEventsLabel" value=""/>
+<property name="disableTransportTransformer" value="false"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="tracking:enable-default-events" value="false"/>
+<property name="ref" value=""/>
+<property name="transformer-refs" value=""/>
+<property name="updated"/>
+<property name="address" value="vm://clientsorchestation"/>
+<property name="auxiliary;erased;encoding" value="true"/>
+<property name="encoding" value=""/>
+<property name="path" value=""/>
+<property name="responseTransformer-refs" value=""/>
+<property name="auxiliary;erased;responseTimeout" value="true"/>
+<property name="mimeType" value=""/>
+<property name="responseTimeout" value=""/>
+<property name="connector-ref" value=""/>
+                            </properties>
+                            <description></description>
+                        </endpoint>
+                    </lane>
                 </compartment>
             </splitter>
         </lane>

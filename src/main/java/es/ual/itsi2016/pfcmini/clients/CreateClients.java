@@ -17,7 +17,7 @@ public class CreateClients {
 		dolibarConnector= new DolibarConnector((String)request.getParameters().get("login"), (String)request.getParameters().get("password"));
 		sugarcrm = new SugarConnector((String)request.getParameters().get("login"), (String)request.getParameters().get("password"));
 		sugarcrm.createAccount(response);
-		String ref= (String)request.getParameters().get("ref");
+		String ref= (String)request.getParameters().get("name");
 		String email= (String)request.getParameters().get("email");
 		String direccion= (String)request.getParameters().get("direccion");
 		if(dolibarConnector.CreateClient(ref, email, direccion)){

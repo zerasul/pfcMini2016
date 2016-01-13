@@ -19,15 +19,18 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <flow name="Orchestation" doc:name="Orchestation">
         <vm:inbound-endpoint exchange-pattern="request-response" address="vm://orchestation" doc:name="VM"/>
         <choice doc:name="Choice">
-            <when expression="#[payload.backend==1]">
+            <when expression="#[payload.request.backend==1]">
                 <vm:outbound-endpoint exchange-pattern="request-response" address="vm://clientsorchestation" doc:name="VM"/>
             </when>
-            <when expression="#[payload.backend==2]">
+            <when expression="#[payload.request.backend==2]">
                 <vm:outbound-endpoint exchange-pattern="request-response" address="vm://productsorchestation" doc:name="VM"/>
             </when>
-            <when expression="#[payload.backend==3]">
+            <when expression="#[payload.request.backend==3]">
                 <vm:outbound-endpoint exchange-pattern="request-response" address="vm://salesorchestation" doc:name="VM"/>
             </when>
+            <otherwise>
+                <vm:outbound-endpoint exchange-pattern="request-response" address="vm://clientsorchestation" doc:name="VM"/>
+            </otherwise>
         </choice>
     </flow>
 </mule>

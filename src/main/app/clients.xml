@@ -8,15 +8,18 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <flow name="clientsFlow1" doc:name="clientsFlow1">
         <vm:inbound-endpoint exchange-pattern="request-response" address="vm://clientsorchestation" doc:name="VM"/>
         <choice doc:name="Choice">
-            <when expression="#[payload.operation==1]">
+            <when expression="#[payload.request.operation==1]">
                 <component class="es.ual.itsi2016.pfcmini.clients.CreateClients" doc:name="listClients"/>
             </when>
-            <when expression="#[payload.operation==2]">
+            <when expression="#[payload.request.operation==2]">
                 <component class="es.ual.itsi2016.pfcmini.clients.CreateClients" doc:name="CreateClients"/>
             </when>
-            <when expression="#[payload.operation==3]">
+            <when expression="#[payload.request.operation==3]">
                 <component class="es.ual.itsi2016.pfcmini.clients.DeleteClients" doc:name="deleteClients"/>
             </when>
+            <otherwise>
+                <component class="es.ual.itsi2016.pfcmini.clients.CreateClients" doc:name="Java"/>
+            </otherwise>
         </choice>
     </flow>
 </mule>
