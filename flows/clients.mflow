@@ -19,9 +19,9 @@
                     <property name="encoding" value=""/>
                     <property name="path" value=""/>
                     <property name="responseTransformer-refs" value=""/>
-                    <property name="responseTimeout" value=""/>
-                    <property name="mimeType" value=""/>
                     <property name="auxiliary;erased;responseTimeout" value="true"/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value=""/>
                     <property name="connector-ref" value=""/>
                 </properties>
                 <description></description>
@@ -65,8 +65,8 @@
                             <graphicalData x="297" y="43" width="68" height="67"/>
                             <properties>
 <property name="updated"/>
-<property name="class" value="es.ual.itsi2016.pfcmini.clients.ListClients"/>
-<property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;450536930">
+<property name="class" value="es.ual.itsi2016.pfcmini.clients.CreateClients"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;1009992696">
     <property name="ref" value=""/>
     <property name="isProcessed$$$$ " value="true"/>
 </property-collection>
